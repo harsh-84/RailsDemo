@@ -5,6 +5,14 @@
   <%= @feed.post %>
 </p>
 
+<div style = "width:400px; height:auto">
+  <% if @feed.image.attached? %>
+    <%= image_tag(@feed.image, style: 'width:100%') %>
+  <% else %>
+    <h5>Image not available</h5>
+  <% end %>
+</div>
+
 <p>
   <strong>Discription:</strong>
   <%= @feed.discription %>

@@ -1,0 +1,13 @@
+
+<% if current_user %>
+  
+  <%= link_to 'Feed', feeds_path %>&nbsp
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>&nbsp
+  <%= link_to 'MY-Profile', user_path(current_user) %>
+
+<% else %>
+
+  <%= link_to 'Sign up', new_user_registration_path %>&nbsp
+  <%= link_to 'Sign in', new_user_session_path%>
+
+<% end %>

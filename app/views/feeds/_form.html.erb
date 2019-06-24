@@ -15,10 +15,26 @@
     <%= form.label :post %>
     <%= form.text_field :post %>
   </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
 
   <div class="field">
     <%= form.label :discription %>
     <%= form.text_area :discription %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :privacy %><br />
+    <%= form.radio_button :privacy, "public",:checked => true %>
+    <%= form.label :public %>
+    <%= form.radio_button :privacy, "only_me",:checked => true %>
+    <%= form.label :only_me %>
+
+
   </div>
 
 

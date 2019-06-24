@@ -12,6 +12,13 @@
  *
  *= require_tree .
  *= require_self
- */
+ 
  @import "bootstrap-sprockets";
- @import "bootstrap";
+ @import "bootstrap"; */
+@import "friend_finder/bootstrap.min.css";
+@import "friend_finder/emoji.css";
+@import "friend_finder/font-awesome.min.css";
+@import "friend_finder/ionicons.min.css";
+@import "friend_finder/jquery.scrollbar.css";
+@import "friend_finder/style.css";
+
