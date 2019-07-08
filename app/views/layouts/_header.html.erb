@@ -1,13 +1,35 @@
+<header id="header">
+      <nav class="navbar navbar-default navbar-fixed-top menu">
+        <div class="container">
 
-<% if current_user %>
-  
-  <%= link_to 'Feed', feeds_path %>&nbsp
-  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>&nbsp
-  <%= link_to 'MY-Profile', user_path(current_user) %>
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right main-menu">
+                
 
-<% else %>
+                  <li><%= link_to 'Home', root_path%></li>
 
-  <%= link_to 'Sign up', new_user_registration_path %>&nbsp
-  <%= link_to 'Sign in', new_user_session_path%>
+                
+              
+                <% if current_user %>
+                  
+                  <li><%= link_to 'Post', feeds_path %></li>&nbsp
+                  &nbsp
+                  <li><%= link_to 'Bookmarks', bookmarks_path%></li>
+                  <li><%= link_to 'Friends', friendships_path%></li>
+                  <li><%= link_to 'Setting',edit_user_registration_path %></li>
+                  <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+                <% else %>
 
-<% end %>
+                  <li><%= link_to 'Sign up', new_user_registration_path %></li>&nbsp
+                  <li><%= link_to 'Sign in', new_user_session_path%></li>
+
+                <% end %>
+              
+            
+           
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav>
+    </header>

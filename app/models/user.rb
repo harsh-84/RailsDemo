@@ -1,7 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # has_many :feed
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :feeds
+  has_one_attached :photo
+  has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :lockable,:omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
@@ -21,6 +27,26 @@ class User < ApplicationRecord
       end
     end
 
+    def bookmark_for_feed(feed_id)
+      bookmarks.find_by_feed_id(feed_id)
+    end
+
+    def friend_list
+      (friendships.accept.map{|fr| fr.friend } + inverse_friendships.accept.map{|fr| fr.user}).uniq
+    end
+
+    def self.search(search,user_id)
+      if search
+        where("email LIKE ? and id <> ?" ,"%#{search}%", user_id)
+        
+      else
+        all
+      end
+    end
+
+    def self.all_except(user)
+      where.not(id: user)
+    end
 
  
 end

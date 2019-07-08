@@ -1,0 +1,8 @@
+<br>
+<br>
+
+<% if @contacts.present? %>
+  <% @contacts.each do |contact| %>
+        <%= contact[:name] %>
+  <% end %>
+<% end %>

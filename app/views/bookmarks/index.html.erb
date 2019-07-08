@@ -1,0 +1,94 @@
+<br>
+<div id="main">
+  <div class="container">
+    <div class="row">
+      <!-- About Me (Left Sidebar) Start -->
+      <div class="col-md-3">
+        <div class="about-fixed">
+          <div class="my-pic">
+            <% if current_user.photo.attached? %>
+              <%= image_tag(current_user.photo, style: 'width:100%') %>
+            <% else %>
+              <h5>Image not available</h5>
+            <% end %>
+                  
+          </div>
+        
+          <div class="my-detail">
+            <div class="white-spacing">
+              <p>
+                <strong>Name:</strong>
+                <%= current_user.name %>
+              </p>
+              <p>
+                <strong>Email:</strong>
+                <%= current_user.email %>
+              </p>
+
+              <p>
+                <strong>Wish me on:</strong>
+                <%= current_user.DOB %>
+              </p>
+
+              <p>
+                <strong>Gender:</strong>
+                <%= current_user.Gender %>
+              </p>
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="col-md-12 page-body">
+          <div class="row">
+            <div class="sub-title">
+              <h2>Bookmark</h2>
+             </div>
+            <div class="col-md-12 content-page">
+              <!-- Blog Post Start -->
+              <% @bookmark.each do |bookmark| %>
+               <div class="col-md-12 blog-post">
+                  
+                  <div class="post-title">
+                    <%= bookmark.feed.post %>
+                  </div>
+
+                  <div class="post-info">
+                   <%= bookmark.feed.discription %>
+                  </div>
+                  
+                  <% if bookmark.feed.image.attached? %>
+                    <%= image_tag(bookmark.feed.image, style: 'width:50%') %>
+                  <% end %><br>
+                 <%= link_to 'Delete-Bookmark',bookmark_path(bookmark), method: :delete, data:{confirm: 'Are you sure?'},:remote => true %>
+
+                 
+                </div>
+
+
+              <% end %>
+            </div>
+            <%= will_paginate @bookmark, :id => 'my_element', :class => 'my_class' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

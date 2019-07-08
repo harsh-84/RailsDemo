@@ -1,0 +1,78 @@
+<div id="main">
+  <div class="container">
+    <div class="row">
+      <!-- About Me (Left Sidebar) Start -->
+      <div class="col-md-3">
+        <div class="about-fixed">
+          <div class="my-pic">
+            <% if current_user.photo.attached? %>
+              <%= image_tag(current_user.photo, style: 'width:50%') %>
+            <% else %>
+              <h5>Image not available</h5>
+            <% end %>
+                  
+          </div>
+        
+          <div class="my-detail">
+            <div class="white-spacing">
+              <p>
+                <strong>Name:</strong>
+                <%= current_user.name %>
+              </p>
+              <p>
+                <strong>Email:</strong>
+                <%= current_user.email %>
+              </p>
+
+              <p>
+                <strong>Wish me on:</strong>
+                <%= current_user.DOB %>
+              </p>
+
+              <p>
+                <strong>Gender:</strong>
+                <%= current_user.Gender %>
+              </p>
+
+
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="col-md-12 page-body">
+          <div class="row">
+            <div class="sub-title">
+              <h3>Related User</h3>
+             </div>
+            
+            <% @user.each do |user| %>
+              <div class="col-md-12 blog-post">
+                <% if user.photo.attached? %>
+                    <%= image_tag(user.photo, style: 'float :left;width:6%') %>
+                  <% end %>
+                <p>
+                  <strong>Email:</strong>
+                  <%= user.email %>
+                  <div class = "inline" >
+                     
+                    <% if @user == current_user.friends.include?(user) || current_user.inverse_friends.include?(user) %>
+                      
+                   
+                        
+                      <% else %>
+
+                        <%= link_to "Add friend", friendships_path(:friend_id =>user), :method => :post %>
+                    <% end %>
+                  </div>
+
+                </p>
+
+              </div> 
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

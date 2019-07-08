@@ -1,0 +1,42 @@
+<% @feeds.each do |feed| %>
+                  
+                  
+  <div id = "feeds" class="col-md-12 blog-post">
+    <div>
+      <% if feed.user.photo.attached? %>
+        <%= image_tag(feed.user.photo, style: 'width:7%') %>
+        <%= feed.user.name%>
+        <br>  
+        <span style="font-size:85%;">
+          <%=feed.created_at.to_formatted_s(:long)%>  
+        </span>
+      <% end %>
+    </div>
+    <br>
+    <div class="post-title">
+      <%= feed.post%>
+    </div>
+
+    <div class="post-info">
+      <%= feed.discription %>
+    </div>
+    
+    <% if feed.image.attached? %>
+      <%= image_tag(feed.image, style: 'width:100%') %>
+    <% end %>
+    
+           
+    <%= link_to 'Show', feed %>&nbsp
+    <% bookmark = current_user.bookmark_for_feed(feed.id) %> 
+    <% if !(bookmark.present?) %>
+      <%= link_to 'Add-Bookmark', bookmarks_path(feed_id: feed), method: :post,:remote => true %>
+    <% else %>
+    
+      <%= link_to 'Delete-Bookmark',bookmark_path(bookmark), method: :delete, data:{confirm: 'Are you sure?'},:remote => true %>
+    <% end %>
+    <%if feed.user == current_user %>
+      <%= link_to 'Edit', edit_feed_path(feed) %>&nbsp 
+      <%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div> 
+<% end %>

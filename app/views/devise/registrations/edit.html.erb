@@ -4,6 +4,26 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name, "Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :DOB,"Birthday" %><br />
+    <%= f.date_field :DOB %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Gender%><br />
+    <%= f.radio_button :Gender, "Male",:checked => true %>
+    <%= f.label :Male %>
+    <%= f.radio_button :Gender, "Female",:checked => true %>
+    <%= f.label :Female %>
+  </div>
+
+ 
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -20,7 +40,7 @@
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
-
+ 
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
@@ -30,6 +50,15 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
+
+
+  <div class="field">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+
+  
+
 
   <div class="actions">
     <%= f.submit "Update" %>

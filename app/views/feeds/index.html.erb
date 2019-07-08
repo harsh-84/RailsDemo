@@ -1,40 +1,80 @@
 
 
 
-<p id="notice"><%= notice %></p>
 
-<h1>Feeds</h1>
+ <div id="main">
+  <div class="container">
+    <div class="row">
+      <!-- About Me (Left Sidebar) Start -->
+      <div class="col-md-3">
+        <div class="about-fixed">
+          <div class="my-pic">
+            <% if current_user.photo.attached? %>
+              <%= image_tag(current_user.photo, style: 'width:100%') %>
+            <% else %>
+              <h5>Image not available</h5>
+            <% end %>
+                  
+          </div>
+        
+          <div class="my-detail">
+            <div class="white-spacing">
+              <p>
+                <strong>Name:</strong>
+                <%= current_user.name %>
+              </p>
+              <p>
+                <strong>Email:</strong>
+                <%= current_user.email %>
+              </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Post&nbsp</th>
-      <th>Discription</th>
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+              <p>
+                <strong>Wish me on:</strong>
+                <%= current_user.DOB %>
+              </p>
 
-  <tbody>
-    <% @feeds.each do |feed| %>
-      <%if feed.privacy == "public"%>
-        <tr>
-          <td><%= feed.post %> &nbsp &nbsp</td>
-          <td><%= feed.discription %>&nbsp &nbsp</td>       
+              <p>
+                <strong>Gender:</strong>
+                <%= current_user.Gender %>
+              </p>
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Post (Right Sidebar) Start -->
+      <div class="col-md-9">
+        <div class="col-md-12 page-body">
+          <div class="row">
+            <div class="sub-title">
+              <h2>Create new Feed</h2>
+              <%= render 'form', feed: @feed %>
+              
+             </div>
+            <div class="col-md-12 content-page">
+              
+              
+              <!-- Blog Post Start -->
+              <p id="notice"><%= notice %></p>
+              <h2>Posts</h2>
+              <div>
+                
+              </div>
+              
+              <div id="feeds">
+                <%= render @feeds %>
+              </div>
+              
+               
+               
+               <%= will_paginate(@feeds) %>
+            </div>
             
-          <td><%= link_to 'Show', feed %>&nbsp &nbsp</td>
-     
-          <%if feed.user == current_user %>
-            <td><%= link_to 'Edit', edit_feed_path(feed) %>&nbsp &nbsp</td>
-            <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>
 
-<br>
 
-<%= link_to 'New Feed', new_feed_path %><br>
-<%= link_to 'Home Page', root_path%>

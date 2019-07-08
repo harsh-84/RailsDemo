@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_21_125151) do
+ActiveRecord::Schema.define(version: 2019_07_02_092848) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2019_06_21_125151) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "feed_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_bookmarks_on_feed_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "feeds", force: :cascade do |t|
     t.string "post"
     t.text "discription"
@@ -41,6 +50,14 @@ ActiveRecord::Schema.define(version: 2019_06_21_125151) do
     t.datetime "updated_at", null: false
     t.string "privacy"
     t.index ["user_id"], name: "index_feeds_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
   create_table "sessions", force: :cascade do |t|

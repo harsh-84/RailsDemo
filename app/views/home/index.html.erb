@@ -1,2 +1,35 @@
+<br>
+
 <h1> Welcome To The Page</h1>
+
+<div style = "width:400px; height:auto">
+  <% if @user.photo.attached? %>
+    <%= image_tag(@user.photo, style: 'width:50%') %>
+  <% else %>
+    <h5>Image not available</h5>
+  <% end %>
+</div>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Wish me on:</strong>
+  <%= @user.DOB %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @user.Gender %>
+</p>
+
 
