@@ -1,0 +1,32 @@
+<div class="my-pic">
+  <% if current_user.photo.attached? %>
+    <%= image_tag(current_user.photo, style: 'width:100%') %>
+  <% else %>
+    <h5>Image not available</h5>
+  <% end %>
+        
+</div>
+
+<div class="my-detail">
+  <div class="white-spacing">
+    <p>
+      <strong>Name:</strong>
+      <%= current_user.name %>
+    </p>
+    <p>
+      <strong>Email:</strong>
+      <%= current_user.email %>
+    </p>
+
+    <p>
+      <strong>Wish me on:</strong>
+      <%= current_user.DOB %>
+    </p>
+
+    <p>
+      <strong>Gender:</strong>
+      <%= current_user.Gender %>
+    </p>
+  </div> 
+</div>
+        

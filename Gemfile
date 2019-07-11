@@ -27,7 +27,9 @@ gem 'will_paginate'
 gem 'pry'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-gem 'devise'
+gem 'devise' 
+gem 'devise_invitable', '~> 2.0.0'
+gem 'devise_invitable', '~> 2.0.0'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
@@ -35,6 +37,8 @@ gem 'activerecord-session_store', '~> 1.0'
 gem "omnicontacts"
 gem 'certified' 
 gem "jquery-ui-rails"
+gem "sidekiq"
+gem 'redis-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -63,6 +67,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv'
+  gem 'letter_opener'
 end
 
 group :test do

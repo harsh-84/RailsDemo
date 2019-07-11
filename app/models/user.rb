@@ -6,10 +6,14 @@ class User < ApplicationRecord
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :feeds
+  has_many :contacts
   has_one_attached :photo
   has_many :bookmarks, dependent: :destroy
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :lockable,:omniauthable, omniauth_providers: [:facebook, :google_oauth2]
+
+  before_invitation_created :create_friendship
+  after_invitation_accepted :accept_friendship
 
     def self.create_from_provider_data(provider_data)
       where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
@@ -48,5 +52,14 @@ class User < ApplicationRecord
       where.not(id: user)
     end
 
- 
+  private
+    def create_friendship
+      self.inverse_friendships.build(user_id: invited_by.id)
+
+    end
+
+    def accept_friendship
+      status = Friendship.statuses["accept"]
+      self.inverse_friendships.first.update(status: status)
+    end
 end

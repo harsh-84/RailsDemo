@@ -8,18 +8,18 @@
             <ul class="nav navbar-nav navbar-right main-menu">
                 
 
-                  <li><%= link_to 'Home', root_path%></li>
+                <!--<li><%= link_to 'Home', root_path%></li> -->
 
                 
               
                 <% if current_user %>
                   
-                  <li><%= link_to 'Post', feeds_path %></li>&nbsp
+                  <li><%= link_to 'Post', feeds_path,class: "btn btn-default" %></li>&nbsp
                   &nbsp
-                  <li><%= link_to 'Bookmarks', bookmarks_path%></li>
-                  <li><%= link_to 'Friends', friendships_path%></li>
-                  <li><%= link_to 'Setting',edit_user_registration_path %></li>
-                  <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+                  <li><%= link_to 'Bookmarks', bookmarks_path,class: "btn btn-default" %></li>
+                  <li><%= link_to 'Friends', friendships_path,class: "btn btn-default"%></li>
+                  <li><%= link_to 'Setting',edit_user_registration_path,class: "btn btn-default" %></li>
+                  <li><%= link_to 'Sign out', destroy_user_session_path,class: "btn btn-default", method: :delete %></li>
                 <% else %>
 
                   <li><%= link_to 'Sign up', new_user_registration_path %></li>&nbsp

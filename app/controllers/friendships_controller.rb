@@ -15,10 +15,19 @@ class FriendshipsController < ApplicationController
   def contacts_callback
     @contacts = request.env['omnicontacts.contacts']
     # puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
-    # @contacts.each do |contact|
-    #   puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
-    # end
+    if @contacts.present?
+      @contacts.each do |contact|
+        #contact = current_user.contacts.find_or_create_by(email: contact[:email])
+        # #User.invite!({email:  contact[:email]}, current_user )
+        InvitaionMailerJob.perform_later(contact,current_user)
+      end
+    end
   end
+  # def invite_user
+  #   current_user.contacts.each do |contact|
+  #     InvitaionMailerJob.perform_later(contact.email)
+  #   end
+  # end
 
   def friend_list
     @friends = current_user.friendships.accept.map{|fr| fr.friend } + current_user.inverse_friendships.accept.map{|fr| fr.user}
@@ -27,6 +36,7 @@ class FriendshipsController < ApplicationController
   end
  
   def index
+    @users = User.all
     @inverse_friendship = current_user.inverse_friendships.pending.map{|fr| fr.user}
   end
 

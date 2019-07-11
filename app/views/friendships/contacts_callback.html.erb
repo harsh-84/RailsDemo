@@ -3,6 +3,14 @@
 
 <% if @contacts.present? %>
   <% @contacts.each do |contact| %>
-        <%= contact[:name] %>
+      
+      <div>
+        <strong>Name</strong>
+        <%= contact[:name] %><br>
+        <strong>Email</strong>
+        <%= contact[:email] %><br>
+        <!--<%= link_to "Invite Friend",user_invitation_path%> -->
+        <hr>
+      </div>
   <% end %>
 <% end %>
