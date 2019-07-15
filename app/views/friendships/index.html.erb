@@ -8,60 +8,61 @@
           <%= render "feeds/left_bar" %>
         </div>
       </div>
-
-      <div class="col-md-9">
-        <div class="col-md-12 page-body">
-          <div class="row">
-            <div class="container">
-              <ul class="list-inline">
-                <li><%= link_to 'Find new friends', new_friendship_path, class: "btn btn-default" %></li>
-                <li><%= link_to 'My Friends', friend_list_path, class: "btn btn-default"%></li>
-                <li>
-                  <div class="dropdown">
-                    <button type="button" data-toggle="dropdown">Fetch Friends <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="/contacts/gmail">Gmail</a></li>
-                      <li><a href="/contacts/facebook">Facebook</a></li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          
-            <div class="sub-title">
-              <h2>Friend Request </h2>
-             </div>
-
-            <div class="col-md-12 content-page">
-              <% @inverse_friendship.each do |friend| %>
-
-                
-                  <div class="col-md-12 blog-post">
-
-                    <% if friend.photo.attached? %>
-                      <%= image_tag(friend.photo, style: 'width:10%') %>
-                    <% end %>
-
-                    <div class="post-title">
-                      <%= friend.name %>
+      <div class = "container" >
+        <div class="col-md-9">
+          <div class="col-md-12 page-body">
+            <div class="row">
+              <div class="container">
+                <ul class="list-inline">
+                  <li><%= link_to 'Find new friends', new_friendship_path, class: "btn btn-default" %></li>
+                  <li><%= link_to 'My Friends', friend_list_path, class: "btn btn-default"%></li>
+                  <li>
+                    <div class="dropdown">
+                      <button type="button" data-toggle="dropdown">Fetch Friends <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a href="/contacts/gmail">Gmail</a></li>
+                        <li><a href="/contacts/facebook">Facebook</a></li>
+                      </ul>
                     </div>
+                  </li>
+                </ul>
+              </div>
+            
+              <div class="sub-title">
+                <h2>Friend Request </h2>
+               </div>
 
-                    <div class = "inline">
+              <div class="col-md-12 content-page">
+                <% @inverse_friendship.each do |friend| %>
+
                   
-                      <%= link_to "Accept Request",friendship_accept_request_path(friend.id), method: :patch%>
-                    </div>                  
+                    <div class="col-md-12 blog-post">
 
-                    <div class = "inline" >
-                      <%= link_to "Remove friend",friendship_path(friend.id), :method => :delete %>&nbsp &nbsp
+                      <% if friend.photo.attached? %>
+                        <%= image_tag(friend.photo, style: 'width:10%') %>
+                      <% end %>
+
+                      <div class="post-title">
+                        <%= friend.name %>
+                      </div>
+
+                      <div class = "inline">
+                    
+                        <%= link_to "Accept Request",friendship_accept_request_path(friend.id), method: :patch%>
+                      </div>                  
+
+                      <div class = "inline" >
+                        <%= link_to "Remove friend",friendship_path(friend.id), :method => :delete %>&nbsp &nbsp
+                      </div>
+
+                      <div class="post-title">
+                        <%= friend.email %>
+                      </div>
+
                     </div>
-
-                    <div class="post-title">
-                      <%= friend.email %>
-                    </div>
-
-                  </div>
-               
-              <% end %>
+                 
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get "/contacts/:importer/callback" => "friendships#contacts_callback"
   get "/contacts/failure" => "friendships#contacts_callback"
   get "/oauth2callback" => "friendships#contacts_callback"

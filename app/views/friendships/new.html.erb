@@ -8,29 +8,30 @@
           <%= render "feeds/left_bar" %>
         </div>
       </div>
-
-      <div class="col-md-9">
-        <div class="col-md-12 page-body">
-          <div class="row">
-              <%= form_tag user_index_path, :method => 'get' do %>
-                <%= text_field_tag :search, params[:search] %>
-                <%= submit_tag "Search" %>
-              <% end %>
-            <div class="col-md-12 content-page">
-              <!-- Blog Post Start -->
-              <% @user.each do |user|%>
-                <div class="col-md-12 blog-post">
-                    <% if user.photo.attached? %>
-                    <%= image_tag(user.photo,style: 'float :right;width:10%') %>
-                    <% end %>
-                  <div class="post-title">
-                    <%= user.email %><br>
-                 
-                    <%= status_checker(user,current_user) %>
+      <div class = "container" >
+        <div class="col-md-9">
+          <div class="col-md-12 page-body">
+            <div class="row">
+                <%= form_tag user_index_path, :method => 'get' do %>
+                  <%= text_field_tag :search, params[:search] %>
+                  <%= submit_tag "Search" %>
+                <% end %>
+              <div class="col-md-12 content-page">
+                <!-- Blog Post Start -->
+                <% @user.each do |user|%>
+                  <div class="col-md-12 blog-post">
+                      <% if user.photo.attached? %>
+                      <%= image_tag(user.photo,style: 'float :right;width:10%') %>
+                      <% end %>
+                    <div class="post-title">
+                      <%= user.email %><br>
+                   
+                      <%= status_checker(user,current_user) %>
+                    </div>
+   
                   </div>
- 
-                </div>
-              <% end%>              
+                <% end%>              
+              </div>
             </div>
           </div>
         </div>

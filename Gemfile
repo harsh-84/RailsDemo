@@ -39,6 +39,7 @@ gem 'certified'
 gem "jquery-ui-rails"
 gem "sidekiq"
 gem 'redis-rails'
+gem 'activeadmin'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

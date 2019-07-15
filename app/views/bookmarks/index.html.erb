@@ -8,34 +8,35 @@
           <%= render "feeds/left_bar" %>
         </div>
       </div>
+      <div class = "container" >
+        <div class="col-md-9">
+          <div class="col-md-12 page-body">
+            <div class="row">
+              <div class="sub-title">
+                <h2>Bookmark</h2>
+               </div>
+              <div class="col-md-12 content-page">
+                <!-- Blog Post Start -->
+                <% @bookmark.each do |bookmark| %>
+                 <div class="col-md-12 blog-post">
+                    
+                    <div class="post-title">
+                      <%= bookmark.feed.post %>
+                    </div>
 
-      <div class="col-md-9">
-        <div class="col-md-12 page-body">
-          <div class="row">
-            <div class="sub-title">
-              <h2>Bookmark</h2>
-             </div>
-            <div class="col-md-12 content-page">
-              <!-- Blog Post Start -->
-              <% @bookmark.each do |bookmark| %>
-               <div class="col-md-12 blog-post">
-                  
-                  <div class="post-title">
-                    <%= bookmark.feed.post %>
+                    <div class="post-info">
+                     <%= bookmark.feed.discription %>
+                    </div>
+                    
+                    <% if bookmark.feed.image.attached? %>
+                      <%= image_tag(bookmark.feed.image, style: 'width:50%') %>
+                    <% end %><br>
+                   <%= link_to 'Delete-Bookmark',bookmark_path(bookmark), method: :delete, data:{confirm: 'Are you sure?'},:remote => true %>
                   </div>
-
-                  <div class="post-info">
-                   <%= bookmark.feed.discription %>
-                  </div>
-                  
-                  <% if bookmark.feed.image.attached? %>
-                    <%= image_tag(bookmark.feed.image, style: 'width:50%') %>
-                  <% end %><br>
-                 <%= link_to 'Delete-Bookmark',bookmark_path(bookmark), method: :delete, data:{confirm: 'Are you sure?'},:remote => true %>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
+              <%= will_paginate @bookmark, :id => 'my_element', :class => 'my_class' %>
             </div>
-            <%= will_paginate @bookmark, :id => 'my_element', :class => 'my_class' %>
           </div>
         </div>
       </div>

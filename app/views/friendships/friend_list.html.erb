@@ -8,35 +8,37 @@
           <%= render "feeds/left_bar" %>
         </div>
       </div>
-      <div class="col-md-9">
-        <div class="col-md-12 page-body">
-          <div class="row">
-            <div class="sub-title">
-              <h2>My Friends</h2>
-            </div>
-            <div class="col-md-12 content-page">
+      <div class = "container" >
+        <div class="col-md-9">
+          <div class="col-md-12 page-body">
+            <div class="row">
+              <div class="sub-title">
+                <h2>My Friends</h2>
+              </div>
+              <div class="col-md-12 content-page">
+                
+                <% @friends.each do |friends| %>
+                  <div class="col-md-12 blog-post">
               
-              <% @friends.each do |friends| %>
-                <div class="col-md-12 blog-post">
-                  <% binding.pry %>
-                  <% if friends.photo.attached? %>
-                    <%= image_tag(friends.photo, style: 'width:10%') %>
-                  <% end %>
-                  
-                  <div class="post-title">
-                    <%= friends.name %>
-                  </div>
-
-                  <div class = "inline" >
+                    <% if friends.photo.attached? %>
+                      <%= image_tag(friends.photo, style: 'width:10%') %>
+                    <% end %>
                     
-                    <%= link_to "Unfriend",friendship_path(friends.id), :method => :delete %>
-                  </div>
+                    <div class="post-title">
+                      <%= friends.name %>
+                    </div>
 
-                  <div class="post-title">
-                    <%= friends.email %>
+                    <div class = "inline" >
+                      
+                      <%= link_to "Unfriend",friendship_path(friends.id), :method => :delete %>
+                    </div>
+
+                    <div class="post-title">
+                      <%= friends.email %>
+                    </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

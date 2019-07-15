@@ -7,7 +7,7 @@ class Feed < ApplicationRecord
 
   scope :user_feeds, ->(user_id,friend_list) { where("user_id = ? or privacy = ? or  (privacy = ? and user_id IN  (?)) ",user_id,privacies[:show_all],privacies[:friend],friend_list) }
 
-
+  validates :post,:discription, presence: true
 
   
 end

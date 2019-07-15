@@ -1,0 +1,19 @@
+
+<% if @feed.errors.any? %>
+ <section id="errors">
+ <header>
+   <h4>
+     Oops! The <%= @feed.class.name.titleize.downcase %> could not be saved.
+   </h4>
+   <h5>
+       Please correct the following <%= pluralize(@feed.errors.count, "error") %>:
+   </h5 >
+ </header>
+<ul>
+
+ <% @feed.errors.full_messages.each do |message| %>
+ <li><%= message %></li>
+ <% end %>
+</ul>
+</section>
+<% end %>

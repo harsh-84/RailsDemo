@@ -11,33 +11,35 @@
       </div>
 
       <!-- Blog Post (Right Sidebar) Start -->
-      <div class="col-md-9">
-        <div class="col-md-12 page-body">
-          <div class="row">
-            <div class="sub-title">
-              <h2>Create new Feed</h2>
-              <%= render 'form', feed: @feed %>
-              
-             </div>
-            <div class="col-md-12 content-page">
-              
-              
-              <!-- Blog Post Start -->
-              <p id="notice"><%= notice %></p>
-              <h2>Posts</h2>
-              <div>
+      <div class = "container" >
+        <div class="col-md-9">
+          <div class="col-md-12 page-body">
+            <div class="row">
+              <div class="sub-title">
+                <h2>Create new Feed</h2>
+                <%= render 'form', feed: @feed %>
                 
+               </div>
+              <div class="col-md-12 content-page">
+                
+                
+                <!-- Blog Post Start -->
+                <p id="notice"><%= notice %></p>
+                <h2>Posts</h2>
+                <div>
+                  
+                </div>
+                
+                <div id="feeds">
+                  <%= render @feeds %>
+                </div>
+                
+                 
+                 
+                 <%= will_paginate(@feeds) %>
               </div>
               
-              <div id="feeds">
-                <%= render @feeds %>
-              </div>
-              
-               
-               
-               <%= will_paginate(@feeds) %>
             </div>
-            
           </div>
         </div>
       </div>
