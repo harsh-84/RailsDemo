@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   require 'will_paginate/array'
 
   def index
-
+    # making cmment
      @bookmark = current_user.bookmarks.paginate(page: params[:page],per_page: 4).order('created_at DESC')
     # @bookmarks = []
     # Bookmark.all.each do |bookmark|
